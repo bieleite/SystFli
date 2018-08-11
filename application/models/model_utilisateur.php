@@ -6,12 +6,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author Gabriel
  */
-class model_user extends CI_Model  {
+class model_utilisateur extends CI_Model  {
+     function __construct() {
+        parent::__construct();
+        
+        //$this->load->helper('url');
+    }
+    
     function login($email,$password) {
-        $this->db->select('id','nom');
+        $this->db->select('ID','NOM','LOGIN','EMAIL');
         $this->db->from('users');
-        $this->db->where('email',$email);
-        $this->db->where('password',$password);
+        $this->db->where('EMAIL',$email);
+        $this->db->where('PASSWORD',$password);
         $this->db->where('status','1');
         $this->db->limit(1);
         $query= $this->db->get();
